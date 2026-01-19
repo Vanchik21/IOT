@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "author": "Захаров Іван",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-devkit-c-v4", "id": "esp-sender", "top": 0, "left": -100, "attrs": {} },
+    {
+      "type": "wokwi-dht22",
+      "id": "dht1",
+      "top": -80,
+      "left": -150,
+      "attrs": { "temperature": "61.7", "humidity": "73" }
+    },
+    { "type": "wokwi-potentiometer", "id": "pot1", "top": 248.3, "left": -144.2, "attrs": {} },
+    {
+      "type": "board-esp32-devkit-c-v4",
+      "id": "esp-gateway",
+      "top": 0,
+      "left": 350.44,
+      "attrs": {}
+    }
+  ],
+  "connections": [
+    [ "esp-sender:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp-sender:RX", "$serialMonitor:TX", "", [] ],
+    [ "dht1:VCC", "esp-sender:3V3", "red", [ "v0" ] ],
+    [ "dht1:GND", "esp-sender:GND.1", "black", [ "v0" ] ],
+    [ "dht1:SDA", "esp-sender:15", "blue", [ "v0" ] ],
+    [ "pot1:GND", "esp-sender:GND.2", "black", [ "v0" ] ],
+    [ "pot1:VCC", "esp-sender:3V3", "red", [ "v0" ] ],
+    [ "pot1:SIG", "esp-sender:34", "green", [ "v0" ] ],
+    [ "esp-gateway:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp-gateway:RX", "$serialMonitor:TX", "", [] ]
+  ],
+  "dependencies": {}
+}
